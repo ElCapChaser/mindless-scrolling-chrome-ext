@@ -1,0 +1,17 @@
+
+{
+    "manifest_version": 3,
+    "name": "Youtube Redirect",
+    "version": "1.0",
+    "description": "Redirects youtube.com to another site, but allows specific paths to pass through",
+    "permissions": [
+        "declarativeNetRequest",
+        "declarativeNetRequestFeedback"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "host_permissions": [
+        "<all_urls>"
+    ]
+}
