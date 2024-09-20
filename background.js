@@ -5,12 +5,17 @@ chrome.runtime.onInstalled.addListener(async () => {
   const oldRuleIds = oldRules.map(rule => rule.id);
   const newRules = [ 
     {
-    id: 4,
+    id: 1,
     priority: 1,
     action: { type: "redirect", redirect: { url: "https://focussedsearch.netlify.app/" } },
-    condition: { urlFilter: "google.com",resourceTypes: ["main_frame"] }
-  }
+      condition: {
+        regexFilter: "^https://(www\\.)?youtube\\.com(/)?$",  // Matches only youtube.com or youtube.com/
+        resourceTypes: ["main_frame"]
+      }
+    }
 ]
+// The Linkedin search logic. 
+// https://www.linkedin.com/search/results/all/?keywords=steven%20verlinden&sid=trg
 
   // Use the arrays to update the dynamic rules
   await chrome.declarativeNetRequest.updateDynamicRules({
@@ -19,3 +24,4 @@ chrome.runtime.onInstalled.addListener(async () => {
   });
   const oldRules2 = await chrome.declarativeNetRequest.getDynamicRules();
 });
+
