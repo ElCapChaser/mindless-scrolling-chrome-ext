@@ -1,5 +1,4 @@
 chrome.runtime.onInstalled.addListener(async () => {
-  console.log('im installed')
   // Get arrays containing new and old rules
   const oldRules = await chrome.declarativeNetRequest.getDynamicRules();
   const oldRuleIds = oldRules.map(rule => rule.id);
@@ -7,7 +6,7 @@ chrome.runtime.onInstalled.addListener(async () => {
     {
     id: 1,
     priority: 1,
-    action: { type: "redirect", redirect: { url: "https://focussedsearch.netlify.app/" } },
+    action: { type: "redirect", redirect: { url: "https://focussedsearch.netlify.app/?platform=youtube" } },
       condition: {
         regexFilter: "^https://(www\\.)?youtube\\.com(/)?$",  // Matches only youtube.com or youtube.com/
         resourceTypes: ["main_frame"]
@@ -22,6 +21,5 @@ chrome.runtime.onInstalled.addListener(async () => {
     removeRuleIds: oldRuleIds,
     addRules: newRules
   });
-  const oldRules2 = await chrome.declarativeNetRequest.getDynamicRules();
 });
 
